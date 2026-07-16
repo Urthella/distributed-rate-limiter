@@ -1,0 +1,30 @@
+{
+  "listen": { "port": 8080 },
+  "trustProxy": true,
+  "routes": [
+    {
+      "id": "fixed",
+      "pathPrefix": "/api/fixed",
+      "upstream": "http://upstream:9100",
+      "stripPrefix": true,
+      "rateLimit": { "algorithm": "fixed-window", "limit": 10, "windowSeconds": 10 },
+      "keyOverrides": {
+        "premium-key": { "limit": 100 }
+      }
+    },
+    {
+      "id": "token",
+      "pathPrefix": "/api/token",
+      "upstream": "http://upstream:9100",
+      "stripPrefix": true,
+      "rateLimit": { "algorithm": "token-bucket", "capacity": 8, "refillPerSecond": 2 }
+    },
+    {
+      "id": "sliding",
+      "pathPrefix": "/api/sliding",
+      "upstream": "http://upstream:9100",
+      "stripPrefix": true,
+      "rateLimit": { "algorithm": "sliding-window-log", "limit": 10, "windowSeconds": 10 }
+    }
+  ]
+}

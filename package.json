@@ -1,0 +1,28 @@
+{
+  "name": "rate-limiter-gateway",
+  "version": "1.0.0",
+  "description": "Distributed rate limiter & API gateway: fixed window, token bucket and sliding window log algorithms with in-memory or Redis (atomic Lua) stores, reverse proxying and Prometheus metrics.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "upstream": "node dist/demo-upstream.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "demo": "npm run build && node scripts/demo.mjs",
+    "loadgen": "node scripts/loadgen.mjs"
+  },
+  "dependencies": {
+    "ioredis": "^5.4.1",
+    "prom-client": "^15.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.5.4",
+    "vitest": "^3.2.4"
+  }
+}
