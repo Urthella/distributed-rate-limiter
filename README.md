@@ -1,5 +1,17 @@
 # Distributed Rate Limiter & API Gateway
 
+<!-- badges -->
+[![Stars](https://img.shields.io/github/stars/Urthella/distributed-rate-limiter?style=flat-square&logo=github)](https://github.com/Urthella/distributed-rate-limiter)
+[![Last commit](https://img.shields.io/github/last-commit/Urthella/distributed-rate-limiter?style=flat-square)](https://github.com/Urthella/distributed-rate-limiter/commits/main)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
+![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)
+![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=flat-square&logo=vitest&logoColor=white)
+
 A reverse-proxying API gateway with pluggable rate-limiting algorithms and pluggable state stores, built in Node.js + TypeScript.
 
 - **Three algorithms** behind one `RateLimiter` interface: **Fixed Window Counter**, **Token Bucket** (refill rate + burst capacity, fractional refill), **Sliding Window Log**.
@@ -272,3 +284,16 @@ Traffic round-robins across both replicas, yet each API key still gets exactly o
 - **Sliding window log records only allowed requests** — an attacker spamming 429s doesn't push their own reset time out, but it also means "10 allowed per window" rather than "10 attempts per window". Both semantics are defensible; changing it is a two-line edit in the Lua.
 - **Identity is trust-based**: `x-api-key` is taken at face value (no auth), and IP identity behind a proxy requires `trustProxy` plus a trustworthy LB. Real deployments should authenticate keys before rate-limiting on them.
 - **No request buffering**: bodies stream through the proxy, so large uploads don't inflate gateway memory; the flip side is that a request already streaming can't be retried against a second upstream.
+
+---
+
+## Related projects
+
+Part of my backend and distributed-systems series:
+
+- [**realtime-collab-editor**](https://github.com/Urthella/realtime-collab-editor): CRDT sync over WebSockets, live presence, debounced persistence
+- [**rag-codebase-qa**](https://github.com/Urthella/rag-codebase-qa): AST-aware chunking, hybrid BM25 + vector retrieval, cited answers
+- [**event-driven-order-system**](https://github.com/Urthella/event-driven-order-system): saga orchestration, compensating transactions, idempotent consumers, tracing
+- [**job-queue-orchestrator**](https://github.com/Urthella/job-queue-orchestrator): race-safe job claiming, retries with backoff, dead-letter queue, DAG workflows
+
+More of my work: [github.com/Urthella](https://github.com/Urthella) · [utkudemirtas.tech](https://www.utkudemirtas.tech)
