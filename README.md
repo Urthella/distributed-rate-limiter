@@ -1,6 +1,7 @@
 # Distributed Rate Limiter & API Gateway
 
 <!-- badges -->
+[![CI](https://github.com/Urthella/distributed-rate-limiter/actions/workflows/ci.yml/badge.svg)](https://github.com/Urthella/distributed-rate-limiter/actions/workflows/ci.yml)
 [![Stars](https://img.shields.io/github/stars/Urthella/distributed-rate-limiter?style=flat-square&logo=github)](https://github.com/Urthella/distributed-rate-limiter)
 [![Last commit](https://img.shields.io/github/last-commit/Urthella/distributed-rate-limiter?style=flat-square)](https://github.com/Urthella/distributed-rate-limiter/commits/main)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
